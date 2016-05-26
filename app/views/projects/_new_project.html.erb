@@ -1,0 +1,8 @@
+<%= simple_form_for(Project.new) do |f| %>
+<div class="input-group">
+  <%= f.input :title, label: false, class: "form-control", placeholder: "New Project..." %>
+  <span class="input-group-btn">
+    <%= f.submit class: "btn btn-success", data: { disable_with: "submiting..." } %>
+  </span>
+</div>
+<% end %>

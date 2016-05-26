@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+  <% @projects.each do |project| %>
+  <li role="presentation" class="<%= show_active(project_path(project)) %>">
+    <%= link_to( project_path(project)) do %>
+     <%= project.title %> <span class="badge"> <%= project.is_undone.count %></span>
+    <% end %>
+  </li>
+  <% end %>
+</ul>

@@ -1,0 +1,25 @@
+<%= render 'new_project' %>
+<br>
+<%= link_to(project_path(@project), class: "btn btn-xs btn-default pull-right", method: :delete, data: { confirm: "Are you sure?" } ) do %>
+  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+<% end %>
+<%= link_to(edit_project_path(@project), class: "btn btn-xs btn-default pull-right") do %>
+  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+<% end %>
+
+<%= render 'tab_projects' %>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <br>
+    <%= render 'tasks/new_task' %>
+    <br>
+
+    <% if @project.tasks.present? %>
+    <%= render 'tasks/list_tasks' %>
+    <% end %>
+
+  </div>
+  <div class="col-md-2"></div>
+</div>

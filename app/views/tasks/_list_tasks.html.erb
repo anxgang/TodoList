@@ -1,0 +1,32 @@
+<div class="btn-group" role="group" aria-label="...">
+  <%= link_to(project_path(@project), class: "btn btn-default #{ "btn-primary" if !( current_page?(project_path(@project, is_done: 0)) || current_page?(project_path(@project, is_done: 1) ) )  } ") do %>
+    All <span class="badge"> <%= @project.tasks.count %></span>
+  <% end %>
+  <%= link_to(project_path(@project, is_done: 1), class: "btn btn-default #{"btn-primary" if current_page?(project_path(@project, is_done: 1)) } ") do %>
+    Done <span class="badge"> <%= @project.is_done.count %></span>
+  <% end %>
+  <%= link_to(project_path(@project, is_done: 0), class: "btn btn-default #{"btn-primary" if current_page?(project_path(@project, is_done: 0)) }") do %>
+    Undone <span class="badge"> <%= @project.is_undone.count %></span>
+  <% end %>
+</div>
+
+<br>
+
+<ul class="list-group">
+  <% @tasks.each do |task| %>
+  <li class="list-group-item <%= show_disable(task.is_done) %>">
+      <%= link_to(updone_project_task_path(@project, task)) do %>
+      <span class="<%= checked_style(task.is_done) %>" aria-hidden="true"></span>
+      <% end %>
+      <%= task.content %>
+
+      <%= link_to(project_task_path(@project, task), class: "btn btn-xs btn-default pull-right", method: :delete, data: { confirm: "Are you sure?" } ) do %>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <% end %>
+
+      <%= link_to(edit_project_task_path(@project, task), class: "btn btn-xs btn-default pull-right") do %>
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      <% end %>
+  </li>
+  <% end %>
+</ul>
